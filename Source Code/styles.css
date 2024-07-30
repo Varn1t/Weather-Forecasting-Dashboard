@@ -1,0 +1,277 @@
+:root{
+    --dashboard: rgb(26, 149, 198) !important;
+    --background: rgb(181, 211, 214);
+    --button-bg: rgb(156, 88, 221);
+    --button-hover-bg: lavender;
+    --location-btn-bg: rgb(46, 21, 205);
+    --location-btn-hover-bg: rgb(126, 120, 182);
+    --card-bg: grey;
+    --card-shadow: rgba(0, 0, 0, 0.3);
+}
+html {
+    scroll-behavior: smooth;
+}
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+h1, h2, h4 {
+    color: #fff;
+}
+body {
+    background: linear-gradient(135deg, #a8c0ff, #3f2b96);
+}
+
+h1 {
+    background: linear-gradient(135deg, #1a99c6, #1a1b68); /* Gradient background */
+    font-size: 2rem; /* Slightly larger font size */
+    color: #AFEEEE;
+    padding: 20px 0; /* More padding for a better look */
+    text-align: center !important;
+    border-radius: 8px; /* Rounded corners */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3); /* Subtle shadow */
+    font-family: 'Roboto', sans-serif; /* More modern font */
+    text-transform: uppercase; /* Uppercase text */
+    letter-spacing: 1px; /* Letter spacing for a stylish effect */
+}
+
+.container {
+    display: flex;
+    gap: 35px;
+    padding: 30px;
+    
+    
+}
+input:focus, button:focus {
+    border-color: var(--dashboard);
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+}
+
+.weather-input {
+    width: 550px;
+}
+
+.weather-input .separator {
+    height: 1px;
+    width: 100%;
+    background: white !important;
+    margin: 25px 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.weather-input .separator::before {
+    content: "or";
+    color: rgb(24, 56, 186) !important;
+    font-size: 1.18rem;
+    padding: 0 15px;
+    margin-top: -4px;
+    background: rgb(126, 120, 182)
+}
+
+.weather-input input {
+    width: 100%;
+    height: 46px;
+    outline: none;
+    padding: 0 17px;
+    font-size: 1.07rem;
+    border: 1px solid var(--dashboard);
+    border-radius: 4px;
+    margin: 10px 0 15px 0;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.weather-input button {
+    width: 100%;
+    padding: 10px 0;
+    cursor: pointer !important;
+    outline: none;
+    border: none;
+    font-size: 1rem;
+    border-radius: 4px;
+    color: white !important;
+    background: linear-gradient(135deg, #ff6f61, #d84315); /* Gradient background */
+    box-shadow: 0 4px 6px var(--card-shadow);
+    transition: background 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+.weather-input button:hover {
+    transform: scale(1.05);
+    background: linear-gradient(135deg, #d84315, #ff6f61); /* Inverted gradient on hover */
+}
+
+.weather-input .location-btn {
+    background: linear-gradient(135deg, #3f51b5, #1e88e5); /* Gradient background for location button */
+}
+
+.weather-input .location-btn:hover {
+    background: linear-gradient(135deg, #1e88e5, #3f51b5); /* Inverted gradient on hover */
+}
+
+.weather-input .search-btn:hover {
+    background: linear-gradient(135deg, #d84315, #ff6f61); /* Match the gradient with search button */
+    color: black !important;
+    box-shadow: 0 6px 8px var(--card-shadow);
+}
+.weather-data {
+    width: 100%;
+}
+
+.temperature-toggle {
+    display: flex;
+    gap: 15px; /* Space between buttons */
+    justify-content: center; /* Center the buttons horizontally */
+    margin-top: 20px; /* Space above the buttons */
+    position: relative; /* For tooltip positioning */
+}
+
+.temperature-toggle button {
+    background: var(--button-bg); /* Button background color */
+    color: white; /* Button text color */
+    border: none; /* Remove default border */
+    border-radius: 5px; /* Rounded corners */
+    padding: 10px 20px; /* Padding inside the button */
+    font-size: 1rem; /* Font size */
+    cursor: pointer; /* Pointer cursor on hover */
+    transition: background 0.3s ease, transform 0.3s ease; /* Smooth transitions */
+    box-shadow: 0 4px 6px var(--card-shadow); /* Shadow for a 3D effect */
+    position: relative; /* For tooltip positioning */
+}
+
+.temperature-toggle button:hover {
+    background: var(--button-hover-bg); /* Background color on hover */
+    transform: scale(1.05); /* Slightly increase the size on hover */
+}
+
+.temperature-toggle button:focus {
+    outline: 3px solid var(--dashboard); /* Focus outline */
+    outline-offset: 2px; /* Space between button and outline */
+}
+
+.temperature-toggle button::after {
+    content: attr(data-tooltip); /* Tooltip text */
+    position: absolute; /* Position tooltip */
+    bottom: 100%; /* Position above the button */
+    left: 50%; /* Center horizontally */
+    transform: translateX(-50%); /* Center horizontally */
+    background: #333; /* Tooltip background color */
+    color: #fff; /* Tooltip text color */
+    padding: 5px 10px; /* Tooltip padding */
+    border-radius: 4px; /* Rounded corners */
+    white-space: nowrap; /* Prevent line breaks */
+    font-size: 0.85rem; /* Smaller font size */
+    opacity: 0; /* Hide tooltip initially */
+    visibility: hidden; /* Hide tooltip initially */
+    transition: opacity 0.3s ease, visibility 0.3s ease; /* Smooth transition */
+    z-index: 10; /* Ensure tooltip is above other elements */
+}
+
+.temperature-toggle button:hover::after {
+    opacity: 1; /* Show tooltip on hover */
+    visibility: visible; /* Show tooltip on hover */
+}
+
+.current-weather {
+    color: white;
+    border-radius: 5px;
+    display: flex;
+    padding: 20px 70px 20px 20px;
+    background: var(--dashboard);
+    justify-content: space-between;    
+}
+
+.current-weather h2 {
+    font-size: 1.7rem;
+}
+
+.current-weather h4 {
+    margin-top: 12px;
+    font-size: 1rem;
+    font-weight: 500;
+}
+.current-weather .icon{
+    text-align: center;
+}
+.current-weather .icon img {
+    max-width: 120px;
+    margin-top: -15px;
+}
+
+.current-weather .icon h4 {
+    text-transform: capitalize;
+    margin-top: -10px;
+}
+
+.days-forecast h2 {
+    font-size: 1.5rem;
+    margin: 20px 0;
+    text-align: center;
+}
+
+.weather-cards {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+}
+button:focus, input:focus {
+    outline: 3px solid var(--dashboard);
+    outline-offset: 2px;
+}
+.weather-cards .card {
+    list-style: none;
+    color: white;
+    padding: 18px 16px;
+    background: linear-gradient(135deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.5)); /* Gradient background */
+    border-radius: 10px;
+    width: calc(100% / 5);
+    box-shadow: 0 4px 8px var(--card-shadow);
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.weather-cards .card:hover {
+    transform: translateY(-10px) scale(1.05);
+    box-shadow: 0 8px 16px var(--card-shadow);
+}
+.weather-cards .card img {
+    max-width: 70px;
+    margin: 5px auto; /* Center the image */
+}
+
+/* Responsive Styles */
+@media (max-width: 1024px) {
+    /* Styles for tablets and smaller laptops */
+    .container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .weather-input, .current-weather, .days-forecast {
+        width: 100%;
+        max-width: 550px;
+    }
+
+    .current-weather {
+        flex-direction: column;
+        padding: 20px;
+    }
+
+    .weather-cards {
+        flex-wrap: wrap; /* Allow wrapping */
+        justify-content: center; /* Center the cards */
+    }
+
+    .weather-cards .card {
+        flex: 1 1 calc(50% - 20px); /* Two cards per row on smaller screens */
+        width: auto;
+    }
+}
+
+@media (max-width: 768px) {
+    /* Styles for mobile devices */
+    .weather-cards .card {
+        flex: 1 1 calc(100% - 20px); /* One card per row on mobile devices */
+    }
+}
